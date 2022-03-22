@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">iRestaurant</string>
+    <string name="entree_name">Entrées</string>
+    <string name="plats_name">Plats</string>
+    <string name="desserts_name">Desserts</string>
+    <string-array name="entrees">
+        <item>Salade</item>
+        <item>Plateau de fromage</item>
+        <item>Tapas</item>
+    </string-array>
+</resources>
