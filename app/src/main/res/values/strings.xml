@@ -3,9 +3,17 @@
     <string name="entree_name">Entrées</string>
     <string name="plats_name">Plats</string>
     <string name="desserts_name">Desserts</string>
-    <string-array name="entrees">
+    <string-array name="plats">
         <item>Salade</item>
         <item>Plateau de fromage</item>
         <item>Tapas</item>
+        <item>Tapas</item>
+        <item>Tapas</item>
+        <item>Tapas</item>
+    </string-array>
+    <string-array name="categoryList">
+        <item>entree</item>
+        <item>plat</item>
+        <item>dessert</item>
     </string-array>
 </resources>
