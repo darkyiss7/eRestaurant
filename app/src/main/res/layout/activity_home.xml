@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="277dp"
-        android:layout_height="297dp"
+        android:layout_width="320dp"
+        android:layout_height="324dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,6 @@
         android:id="@+id/entreeBoutton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/entree_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

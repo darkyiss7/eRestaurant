@@ -2,6 +2,6 @@ package com.example.irestaurant
 
 import java.io.Serializable
 
-class Price (
+data class Price (
     var price : String
         ): Serializable

@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Documents/Bureau/iRestaurant/app/src/main/res/layout/activity_category.xml" value="0.25416666666666665" />
-        <entry key="..\:/Documents/Bureau/iRestaurant/app/src/main/res/layout/activity_detail.xml" value="0.24010416666666667" />
-        <entry key="..\:/Documents/Bureau/iRestaurant/app/src/main/res/layout/activity_home.xml" value="0.11302083333333333" />
-        <entry key="..\:/Documents/Bureau/iRestaurant/app/src/main/res/layout/list_items.xml" value="0.4" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/activity_category.xml" value="0.33" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/activity_detail.xml" value="0.33" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/activity_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/custom_dialog.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/example_item.xml" value="0.33" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/item_rv.xml" value="0.33" />
+        <entry key="..\:/Users/theod/AndroidStudioProjects/iRestaurant/app/src/main/res/layout/list_items.xml" value="0.33" />
       </map>
     </option>
   </component>

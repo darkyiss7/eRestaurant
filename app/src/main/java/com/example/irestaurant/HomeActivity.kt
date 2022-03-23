@@ -10,6 +10,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.entreeBoutton.setOnClickListener{
@@ -25,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun goToCategory(category : String){
         val intent = Intent(this, CategoryActivity::class.java)
+
         intent.putExtra("Category",category)
         startActivity(intent)
     }
