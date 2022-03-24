@@ -34,8 +34,7 @@
             android:layout_toRightOf="@id/imagePreview"
             android:text="Titre"
             android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/description"

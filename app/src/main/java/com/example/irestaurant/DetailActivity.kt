@@ -24,7 +24,7 @@ class DetailActivity : AppCompatActivity() {
         binding.totalView.text=("Total : 0 €")
         binding.prixView.text = "Prix : "+item.prices[0].price + "€"
 
-        binding.ingredientsView.text =item.ingredients.joinToString {  it -> "${it.name_fr}"  }
+        binding.ingredientsView.text ="Ingrédients : "+item.ingredients.joinToString {  it -> "${it.name_fr}"  }
         var actionBar = supportActionBar
         actionBar!!.title = item.name_fr
         actionBar.setDisplayHomeAsUpEnabled(true)
