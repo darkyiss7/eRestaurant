@@ -18,16 +18,20 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         item = intent.getSerializableExtra(CategoryActivity.ITEM_KEY) as Item
         binding.detailTitle.text = item.name_fr
-        Picasso.get().load(item.images[0].ifEmpty { null })
-            .placeholder(R.drawable.ic_launcher_foreground)
-            .into(binding.imageFinal)
         binding.totalView.text=("Total : 0 €")
         binding.prixView.text = "Prix : "+item.prices[0].price + "€"
 
-        binding.ingredientsView.text ="Ingrédients : "+item.ingredients.joinToString {  it -> "${it.name_fr}"  }
+
+        val carousseladapter = CarousselAdapter(this,item.images)
+        binding.detailSlider.adapter =  carousseladapter
+
+
+        binding.ingredientsView.text ="Ingrédients : "+item.ingredients.joinToString {"${it.name_fr}"}
         var actionBar = supportActionBar
         actionBar!!.title = item.name_fr
+        actionBar.setIcon(R.drawable.ic_shopping_cart_24)
         actionBar.setDisplayHomeAsUpEnabled(true)
+
 
     }
     fun decrement(view : View){

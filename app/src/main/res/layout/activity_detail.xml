@@ -6,29 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
-    <ImageView
-        android:id="@+id/imageFinal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/detailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/detailSlider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageFinal" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/prixView"
@@ -39,7 +30,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/detailTitle"
+        android:textColor="@color/teal_200"/>
 
     <TextView
         android:id="@+id/ingredientsView"
@@ -74,7 +66,7 @@
         android:clickable="true"
         android:onClick="decrement"
         android:tint="#FBFBFB"
-        app:backgroundTint="#00BCD4"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintStart_toEndOf="@+id/compteurView"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsView"
         app:rippleColor="#5E5E5E"
@@ -88,7 +80,7 @@
         android:layout_marginEnd="32dp"
         android:clickable="true"
         android:onClick="increment"
-        app:backgroundTint="#00BCD4"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toStartOf="@+id/compteurView"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsView"
         app:srcCompat="@drawable/minus1" />
@@ -97,12 +89,22 @@
         android:id="@+id/totalView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:text="Button"
         android:textColorLink="#00BCD4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compteurView" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/detailSlider"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
     <string name="entree_name">Entrées</string>
     <string name="plats_name">Plats</string>
     <string name="desserts_name">Desserts</string>
+    <string name="Panier">Mon panier</string>
     <string-array name="plats">
         <item>Salade</item>
         <item>Plateau de fromage</item>
@@ -16,4 +17,6 @@
         <item>plat</item>
         <item>dessert</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
