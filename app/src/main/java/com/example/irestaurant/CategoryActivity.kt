@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -61,6 +62,14 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
         return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("iditem",item.itemId.toString())
+        if (item.itemId==2131296714){
+            val intent = Intent(this, Cart::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

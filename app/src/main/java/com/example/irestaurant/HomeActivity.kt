@@ -26,7 +26,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun goToCategory(category : String){
         val intent = Intent(this, CategoryActivity::class.java)
-
         intent.putExtra("Category",category)
         startActivity(intent)
     }
