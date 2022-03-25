@@ -65,11 +65,19 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("iditem",item.itemId.toString())
-        if (item.itemId==2131296714){
-            val intent = Intent(this, Cart::class.java)
-            startActivity(intent)
+        return when (item.itemId) {
+            R.id.panier -> {
+                val intent = Intent(this, Cart::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.commande ->{
+                return true
+            }
+            R.id.vider ->{
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }
