@@ -75,7 +75,7 @@ class Cart : AppCompatActivity() {
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, CategoryActivity::class.java)
             startActivity(intent)
         return super.onOptionsItemSelected(item)
     }
