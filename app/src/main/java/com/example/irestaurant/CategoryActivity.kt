@@ -1,5 +1,6 @@
 package com.example.irestaurant
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,9 @@ import com.android.volley.toolbox.Volley
 import com.example.irestaurant.databinding.ActivityCategoryBinding
 import org.json.JSONObject
 import com.google.gson.Gson;
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -75,9 +79,25 @@ class CategoryActivity : AppCompatActivity() {
                 return true
             }
             R.id.vider ->{
+                create(this,"panier.json", "{}")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun create(context: Context, fileName: String, jsonString: String?): Boolean {
+        val FILENAME = "panier.json"
+        return try {
+            val fos: FileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE)
+            if (jsonString != null) {
+                fos.write(jsonString.toByteArray())
+            }
+            fos.close()
+            true
+        } catch (fileNotFound: FileNotFoundException) {
+            false
+        } catch (ioException: IOException) {
+            false
         }
     }
 }
