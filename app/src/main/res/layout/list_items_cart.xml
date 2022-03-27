@@ -63,5 +63,6 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/teal_300" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

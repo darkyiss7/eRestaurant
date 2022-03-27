@@ -1,5 +1,6 @@
 package com.example.irestaurant
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,9 @@ import com.example.irestaurant.databinding.ActivityCategoryBinding
 import com.google.gson.Gson
 import org.json.JSONArray
 import java.io.FileInputStream
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class Cart : AppCompatActivity() {
@@ -20,6 +24,7 @@ class Cart : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val jsonString: String
         val fos: FileInputStream = openFileInput("panier.json")
         val size: Int = fos.available()
@@ -39,8 +44,28 @@ class Cart : AppCompatActivity() {
             }
         }
 
+        binding.button2.setOnClickListener{
+            create(this,"panier.json", "{}")
+            finish();
+            startActivity(getIntent())
+        }
 
 
+    }
+    private fun create(context: Context, fileName: String, jsonString: String?): Boolean {
+        val FILENAME = "panier.json"
+        return try {
+            val fos: FileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE)
+            if (jsonString != null) {
+                fos.write(jsonString.toByteArray())
+            }
+            fos.close()
+            true
+        } catch (fileNotFound: FileNotFoundException) {
+            false
+        } catch (ioException: IOException) {
+            false
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.home,menu)

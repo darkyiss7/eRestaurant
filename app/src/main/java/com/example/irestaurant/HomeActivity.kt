@@ -1,9 +1,15 @@
 package com.example.irestaurant
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.example.irestaurant.databinding.ActivityHomeBinding
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
@@ -28,5 +34,42 @@ class HomeActivity : AppCompatActivity() {
         val intent = Intent(this, CategoryActivity::class.java)
         intent.putExtra("Category",category)
         startActivity(intent)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.panier -> {
+                val intent = Intent(this, Cart::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.commande ->{
+                return true
+            }
+            R.id.vider ->{
+                create(this,"panier.json", "{}")
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun create(context: Context, fileName: String, jsonString: String?): Boolean {
+        val FILENAME = "panier.json"
+        return try {
+            val fos: FileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE)
+            if (jsonString != null) {
+                fos.write(jsonString.toByteArray())
+            }
+            fos.close()
+            true
+        } catch (fileNotFound: FileNotFoundException) {
+            false
+        } catch (ioException: IOException) {
+            false
+        }
     }
 }
