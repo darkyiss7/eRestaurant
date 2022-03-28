@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/home/baseline_home_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/pause/baseline_pause_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_home_24" />
+                            <entry key="color" value="00d7fd" />
+                            <entry key="outputName" value="ic_baseline_pause_24" />
                             <entry key="sourceFile" value="D:\Documents\Téléchargements\ic_shopping_cart.svg" />
                           </map>
                         </option>

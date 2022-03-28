@@ -4,6 +4,9 @@
     <string name="plats_name">Plats</string>
     <string name="desserts_name">Desserts</string>
     <string name="Panier">Mon panier</string>
+    <string name="ble_scan_play">Lancer le scan</string>
+    <string name="ble_scan_pause">Scan BLE en cours …</string>
+    <string name="ble_scan_error">BLE non disponique sur cet appareil</string>
     <string-array name="plats">
         <item>Salade</item>
         <item>Plateau de fromage</item>

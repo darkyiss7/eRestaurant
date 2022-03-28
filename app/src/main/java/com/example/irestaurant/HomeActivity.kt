@@ -28,6 +28,9 @@ class HomeActivity : AppCompatActivity() {
         binding.dessertBouton.setOnClickListener{
             goToCategory(getString(R.string.desserts_name))
         }
+        binding.boutonBluetooth.setOnClickListener{
+            startActivity(Intent(this, BLEScanActivity::class.java))
+        }
     }
 
     private fun goToCategory(category : String){
