@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BLEScanActivity">
+    tools:context="com.isen.irestaurant.activities.BLEScanActivity">
 
     <TextView
         android:id="@+id/bleScanText"
@@ -14,7 +14,8 @@
         android:text="@string/ble_scan_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20dp"/>
 
     <ImageView
         android:id="@+id/bleScanImg"

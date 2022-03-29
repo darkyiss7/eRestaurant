@@ -1,4 +1,4 @@
-package com.example.irestaurant
+package com.isen.irestaurant.activities
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.example.irestaurant.databinding.ActivityHomeBinding
+import com.isen.irestaurant.R
+import com.isen.irestaurant.databinding.ActivityHomeBinding
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
@@ -46,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.panier -> {
-                val intent = Intent(this, Cart::class.java)
+                val intent = Intent(this, CartActivity::class.java)
                 startActivity(intent)
                 true
             }

@@ -1,4 +1,4 @@
-package com.example.irestaurant
+package com.isen.irestaurant.objects
 
 import java.io.Serializable
 

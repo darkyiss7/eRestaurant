@@ -1,22 +1,27 @@
-package com.example.irestaurant
+package com.isen.irestaurant.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.irestaurant.databinding.ActivityCategoryBinding
+import com.google.gson.Gson
+import com.isen.irestaurant.R
+import com.isen.irestaurant.adapter.RecyclerAdapter
+import com.isen.irestaurant.databinding.ActivityCategoryBinding
+import com.isen.irestaurant.objects.Data
 import org.json.JSONObject
-import com.google.gson.Gson;
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -37,9 +42,10 @@ class CategoryActivity : AppCompatActivity() {
                // Log.d("CategoryActivity", arrayOfItems.toString())
                 binding.recyclerView.layoutManager = LinearLayoutManager(this)
                 binding.recyclerView.adapter = RecyclerAdapter(arrayOfItems) {
-                    val intent = Intent(this, DetailActivity::class.java)
-                    intent.putExtra(ITEM_KEY, it)
-                    startActivity(intent)
+                    val intent2 = Intent(this, DetailActivity::class.java)
+                    intent2.putExtra(ITEM_KEY, it)
+                    intent2.putExtra("Categorie",intent.getStringExtra("Category"))
+                    startActivity(intent2)
                 }
             },
             { error ->
@@ -71,7 +77,7 @@ class CategoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.panier -> {
-                val intent = Intent(this, Cart::class.java)
+                val intent = Intent(this, CartActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -79,7 +85,7 @@ class CategoryActivity : AppCompatActivity() {
                 return true
             }
             R.id.vider ->{
-                create(this,"panier.json", "{}")
+                create(this,"panier.json", "null")
                 return true
             }
             else -> super.onOptionsItemSelected(item)

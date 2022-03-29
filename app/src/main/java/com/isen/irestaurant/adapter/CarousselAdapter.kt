@@ -1,8 +1,9 @@
-package com.example.irestaurant
+package com.isen.irestaurant.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.isen.irestaurant.PictureFragment
 
 class CarousselAdapter(activity: AppCompatActivity,val images:ArrayList<String>): FragmentStateAdapter(activity) {
 

@@ -1,11 +1,12 @@
-package com.example.irestaurant
+package com.isen.irestaurant
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.irestaurant.databinding.FragmentPictureBinding
+import com.isen.irestaurant.R
+import com.isen.irestaurant.databinding.FragmentPictureBinding
 import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match

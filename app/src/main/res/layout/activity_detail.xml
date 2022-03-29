@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context="com.isen.irestaurant.activities.DetailActivity">
 
     <TextView
         android:id="@+id/detailTitle"
@@ -59,12 +59,14 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:clickable="true"
         android:onClick="decrement"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="15dp"
         android:tint="#FBFBFB"
         app:backgroundTint="@color/teal_200"
         app:layout_constraintStart_toEndOf="@+id/compteurView"
@@ -74,11 +76,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/moins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:clickable="true"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="15dp"
         android:onClick="increment"
         app:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toStartOf="@+id/compteurView"
@@ -101,7 +105,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/detailSlider"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

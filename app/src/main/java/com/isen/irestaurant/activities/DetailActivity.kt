@@ -1,15 +1,19 @@
-package com.example.irestaurant
+package com.isen.irestaurant.activities
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.irestaurant.databinding.ActivityDetailBinding
 import com.google.gson.Gson
+import com.isen.irestaurant.R
+import com.isen.irestaurant.adapter.CarousselAdapter
+import com.isen.irestaurant.databinding.ActivityDetailBinding
+import com.isen.irestaurant.objects.CartData
+import com.isen.irestaurant.objects.CartItem
+import com.isen.irestaurant.objects.Item
 import java.io.*
 
 
@@ -24,19 +28,19 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         item = intent.getSerializableExtra(CategoryActivity.ITEM_KEY) as Item
         binding.detailTitle.text = item.name_fr
-        binding.totalView.text=("Total : "+item.prices[0].price +"€")
-        binding.prixView.text = "Prix : "+item.prices[0].price + "€"
+        binding.totalView.text=getString(R.string.detail_ajouter,item.prices[0].price.toInt())
+        binding.prixView.text = getString(R.string.detail_prix,item.prices[0].price)
 
         val carousseladapter = CarousselAdapter(this,item.images)
         binding.detailSlider.adapter =  carousseladapter
 
-        binding.ingredientsView.text ="Ingrédients : "+item.ingredients.joinToString {"${it.name_fr}"}
+        binding.ingredientsView.text = getString(R.string.detail_prix,item.ingredients.joinToString { it.name_fr })
         var actionBar = supportActionBar
         actionBar!!.title = item.name_fr
         actionBar.setIcon(R.drawable.ic_shopping_cart_24)
         actionBar.setDisplayHomeAsUpEnabled(true)
         binding.totalView.setOnClickListener{
-            val intent = Intent(this, Cart::class.java)
+            val intent = Intent(this, CartActivity::class.java)
             val cartitem = CartItem(item,count)
             val cartitems = arrayListOf<CartItem>()
             cartitems.add(cartitem)
@@ -51,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
                     fos.read(buffer)
                     fos.close()
                     jsonString = String(buffer, charset("UTF-8"))
-                    if (jsonString=="{}"){
+                    if (jsonString=="null"){
                         val gson2 = Gson()
                         val jsonString = gson2.toJson(items)
                         create(it.context,"panier.json",jsonString)
@@ -82,20 +86,18 @@ class DetailActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-
     }
     fun decrement(view : View){
         count++
         binding.compteurView.text=(""+count)
-        binding.totalView.text=("Total : "+count*item.prices[0].price.toInt() + "€")
+        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toInt()))
 
     }
     fun increment(view : View){
         if (count<=1) count =1
         else count--
         binding.compteurView.text=(""+count)
-        binding.totalView.text=("Total : "+count*item.prices[0].price.toInt() + "€")
+        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toInt()))
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
@@ -105,7 +107,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.panier -> {
-                val intent = Intent(this, Cart::class.java)
+                val intent = Intent(this, CartActivity::class.java)
                 startActivity(intent)
                 true
             }

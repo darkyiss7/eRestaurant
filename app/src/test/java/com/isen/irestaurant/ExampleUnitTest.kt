@@ -1,4 +1,4 @@
-package com.example.irestaurant
+package com.isen.irestaurant
 
 import org.junit.Test
 

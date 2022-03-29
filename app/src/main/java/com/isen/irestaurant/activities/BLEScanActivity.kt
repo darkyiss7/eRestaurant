@@ -1,4 +1,4 @@
-package com.example.irestaurant
+package com.isen.irestaurant.activities
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
@@ -16,8 +16,9 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.irestaurant.databinding.ActivityBlescanBinding
-import java.util.jar.Manifest
+import com.isen.irestaurant.R
+import com.isen.irestaurant.adapter.BleAdapter
+import com.isen.irestaurant.databinding.ActivityBlescanBinding
 
 
 class BLEScanActivity : AppCompatActivity() {
@@ -39,7 +40,9 @@ class BLEScanActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bleScanList.layoutManager = LinearLayoutManager(this)
         binding.bleScanList.adapter = BleAdapter(listeBle)
-
+        title = "Bluetooth";
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeButtonEnabled(true)
         when{
             bluetoothAdapter?.isEnabled == true ->{
                 startLeScanBLEWithPermission(true)

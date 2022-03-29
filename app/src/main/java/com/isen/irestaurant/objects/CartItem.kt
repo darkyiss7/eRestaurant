@@ -1,4 +1,4 @@
-package com.example.irestaurant
+package com.isen.irestaurant.objects
 
 data class CartItem (
     val plat : Item,

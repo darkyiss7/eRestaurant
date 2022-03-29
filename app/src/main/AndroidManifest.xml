@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.irestaurant">
+    package="com.isen.irestaurant">
 
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,21 +21,22 @@
         android:theme="@style/Theme.IRestaurant"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".BLEScanActivity"
+            android:name=".activities.BLEScanActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.HomeActivity"/>
+        <activity
+            android:name=".activities.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".Cart"
-            android:exported="false" />
-        <activity
-            android:name=".DetailActivity"
+            android:name=".activities.DetailActivity"
             android:exported="false"
-            android:parentActivityName=".CategoryActivity" />
+            android:parentActivityName=".activities.CategoryActivity" />
         <activity
-            android:name=".CategoryActivity"
+            android:name=".activities.CategoryActivity"
             android:exported="false"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".activities.HomeActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
