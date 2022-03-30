@@ -9,13 +9,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.isen.irestaurant.R
 import com.isen.irestaurant.adapter.BleAdapter
 import com.isen.irestaurant.databinding.ActivityBlescanBinding
@@ -23,6 +24,7 @@ import com.isen.irestaurant.databinding.ActivityBlescanBinding
 
 class BLEScanActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBlescanBinding
+    lateinit var swipeContainer: SwipeRefreshLayout
     private var isScanning = false
     private val listeBle = ArrayList<ScanResult>()
 
@@ -43,9 +45,20 @@ class BLEScanActivity : AppCompatActivity() {
         title = "Bluetooth";
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeButtonEnabled(true)
+        swipeContainer = findViewById(R.id.swipeContainer)
+        // Setup refresh listener which triggers new data loading
+
+
         when{
             bluetoothAdapter?.isEnabled == true ->{
-                startLeScanBLEWithPermission(true)
+
+                swipeContainer.setOnRefreshListener {
+                    // Your code to refresh the list here.
+                    // Make sure you call swipeContainer.setRefreshing(false)
+                    // once the network request has completed successfully.
+                    onRefresh()
+
+                }
 
             }
 
@@ -62,7 +75,16 @@ class BLEScanActivity : AppCompatActivity() {
             startLeScanBLEWithPermission(!isScanning)
         }
     }
-
+    fun onRefresh(){
+        startLeScanBLEWithPermission(true)
+        val handler = Handler()
+        handler.postDelayed(Runnable {
+            if (swipeContainer.isRefreshing()) {
+                swipeContainer.setRefreshing(false)
+                startLeScanBLEWithPermission(false)
+            }
+        }, 3000)
+    }
     override fun onStop() {
         super.onStop()
         startLeScanBLEWithPermission(false)

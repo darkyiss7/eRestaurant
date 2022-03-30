@@ -28,7 +28,6 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCategoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_category)
         val queue = Volley.newRequestQueue(this)
         val jsonObject = JSONObject()
         jsonObject.put("id_shop", 1)
@@ -39,7 +38,6 @@ class CategoryActivity : AppCompatActivity() {
                 val stringResponse = response.toString()
                 val item = Gson().fromJson(stringResponse, Data::class.java)
                 val arrayOfItems = item.data.firstOrNull { it.name_fr == intent.getStringExtra("Category") }?.items ?: arrayListOf()
-               // Log.d("CategoryActivity", arrayOfItems.toString())
                 binding.recyclerView.layoutManager = LinearLayoutManager(this)
                 binding.recyclerView.adapter = RecyclerAdapter(arrayOfItems) {
                     val intent2 = Intent(this, DetailActivity::class.java)

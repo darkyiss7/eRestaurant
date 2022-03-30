@@ -20,6 +20,9 @@
         android:theme="@style/Theme.IRestaurant"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.BLEDeviceActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CartDetailActivity"
             android:exported="false" />
         <activity
