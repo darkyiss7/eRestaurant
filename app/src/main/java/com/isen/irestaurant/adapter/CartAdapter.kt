@@ -12,7 +12,7 @@ import com.isen.irestaurant.objects.Item
 import com.isen.irestaurant.R
 import com.squareup.picasso.Picasso
 
-class CartAdapter(private var platListe: java.util.ArrayList<CartItem>, val clickListener: (Item) -> Unit) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+class CartAdapter(private var platListe: java.util.ArrayList<CartItem>, val clickListener: (CartItem) -> Unit) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView : TextView = itemView.findViewById(R.id.text)
         val image : ImageView = itemView.findViewById(R.id.imagePreview)
@@ -30,12 +30,12 @@ class CartAdapter(private var platListe: java.util.ArrayList<CartItem>, val clic
         val item = platListe[position]
         holder.textView.text = item.plat.name_fr
         holder.prix.text = item.plat.prices[0].price + "€" + " x   "+item.quantité
-        holder.prixTotal.text = "Total : "+(item.plat.prices[0].price.toInt() * item.quantité ).toString()+"€"
+        holder.prixTotal.text = "Total : "+(item.plat.prices[0].price.toFloat() * item.quantité ).toString()+"€"
         Picasso.get().load(item.plat.images[0].ifEmpty { null })
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.image)
         holder.itemView.setOnClickListener{
-            clickListener(item.plat)
+            clickListener(item)
         }
     }
 

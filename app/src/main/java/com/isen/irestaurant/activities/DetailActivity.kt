@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.isen.irestaurant.R
@@ -28,13 +29,13 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         item = intent.getSerializableExtra(CategoryActivity.ITEM_KEY) as Item
         binding.detailTitle.text = item.name_fr
-        binding.totalView.text=getString(R.string.detail_ajouter,item.prices[0].price.toInt())
+        binding.totalView.text=getString(R.string.detail_ajouter,item.prices[0].price)
         binding.prixView.text = getString(R.string.detail_prix,item.prices[0].price)
 
         val carousseladapter = CarousselAdapter(this,item.images)
         binding.detailSlider.adapter =  carousseladapter
 
-        binding.ingredientsView.text = getString(R.string.detail_prix,item.ingredients.joinToString { it.name_fr })
+        binding.ingredientsView.text = getString(R.string.detail_ingredients,item.ingredients.joinToString { it.name_fr })
         var actionBar = supportActionBar
         actionBar!!.title = item.name_fr
         actionBar.setIcon(R.drawable.ic_shopping_cart_24)
@@ -85,19 +86,20 @@ class DetailActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
             startActivity(intent)
+            Toast.makeText(it.context, "Elemement ajouté au panier", Toast.LENGTH_SHORT).show()
         }
     }
     fun decrement(view : View){
         count++
         binding.compteurView.text=(""+count)
-        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toInt()))
+        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toFloat()).toString())
 
     }
     fun increment(view : View){
         if (count<=1) count =1
         else count--
         binding.compteurView.text=(""+count)
-        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toInt()))
+        binding.totalView.text=getString(R.string.detail_ajouter,(count*item.prices[0].price.toFloat()).toString())
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
@@ -115,7 +117,7 @@ class DetailActivity : AppCompatActivity() {
                 return true
             }
             R.id.vider ->{
-                create(this,"panier.json", "{}")
+                create(this,"panier.json", "null")
                 return true
             }
             else -> super.onOptionsItemSelected(item)

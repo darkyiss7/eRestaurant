@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
             R.id.vider ->{
-                create(this,"panier.json", "{}")
+                create(this,"panier.json", "null")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
