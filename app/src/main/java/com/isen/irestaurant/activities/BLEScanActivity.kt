@@ -34,32 +34,24 @@ class BLEScanActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var i = 0
-        val handler = Handler()
-        val bleAdapter : BleAdapter
         super.onCreate(savedInstanceState)
         binding = ActivityBlescanBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bleScanList.layoutManager = LinearLayoutManager(this)
-        binding.bleScanList.adapter = BleAdapter(listeBle)
+        binding.bleScanList.adapter = BleAdapter(listeBle){
+            val intent = Intent(this, BLEDeviceActivity::class.java)
+            intent.putExtra(ITEM_KEY, it)
+            startActivity(intent)
+        }
         title = "Bluetooth";
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeButtonEnabled(true)
         swipeContainer = findViewById(R.id.swipeContainer)
-        // Setup refresh listener which triggers new data loading
-
-
         when{
             bluetoothAdapter?.isEnabled == true ->{
-
                 swipeContainer.setOnRefreshListener {
-                    // Your code to refresh the list here.
-                    // Make sure you call swipeContainer.setRefreshing(false)
-                    // once the network request has completed successfully.
                     onRefresh()
-
                 }
-
             }
 
             bluetoothAdapter != null ->
@@ -100,7 +92,6 @@ class BLEScanActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, getAllPermissions(), ALL_PERMISSION_REQUEST_CODE)
         }
     }
-
     @SuppressLint("MissingPermission")
     private fun startLeScanBLE(enable : Boolean) {
         bluetoothAdapter?.bluetoothLeScanner?.apply {
@@ -122,7 +113,6 @@ class BLEScanActivity : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED
         }
     }
-
     private fun getAllPermissions(): Array<String> {
         return if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.S){
             arrayOf(
@@ -136,7 +126,6 @@ class BLEScanActivity : AppCompatActivity() {
             )
         }
     }
-
     private fun displayBLEUnAvailable() {
         binding.bleScanImg.isVisible = false
         binding.bleScanText.text=getString(R.string.ble_scan_error)
@@ -152,7 +141,6 @@ class BLEScanActivity : AppCompatActivity() {
             startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH_REQUEST_CODE)
         }
     }
-
     private val scanCallback = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
             Log.d("BLEScanActivity","result : ${result.device.address}, rssi : ${result.rssi}")
@@ -162,12 +150,8 @@ class BLEScanActivity : AppCompatActivity() {
             }
         }
     }
-
-
     private fun handlePlayPause(){
-
             if (isScanning){
-
                 binding.bleScanImg.setImageResource(R.drawable.ic_baseline_pause_24)
                 binding.bleScanText.text=getString(R.string.ble_scan_pause)
                 binding.bleScanProgression.isIndeterminate = true
@@ -176,9 +160,9 @@ class BLEScanActivity : AppCompatActivity() {
                 binding.bleScanText.text=getString(R.string.ble_scan_play)
                 binding.bleScanProgression.isIndeterminate = false
             }
-
     }
     companion object {
+        val ITEM_KEY ="item_key"
         private const val ALL_PERMISSION_REQUEST_CODE = 1
         private const val ENABLE_BLUETOOTH_REQUEST_CODE = 1
 

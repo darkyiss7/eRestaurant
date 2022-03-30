@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,7 @@ class CartActivity : AppCompatActivity() {
         binding.button2.setOnClickListener{
             create(this,"panier.json", "null")
             affichepanier()
+            Toast.makeText(this, "Pannier vidé", Toast.LENGTH_SHORT).show()
 
         }
     }

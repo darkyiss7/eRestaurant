@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IRestaurant"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".BluetoothLeService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".activities.BLEDeviceActivity"
             android:exported="false" />

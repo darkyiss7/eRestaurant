@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.isen.irestaurant.R
 import com.isen.irestaurant.databinding.ActivityHomeBinding
 import java.io.FileNotFoundException
@@ -56,6 +57,7 @@ class HomeActivity : AppCompatActivity() {
             }
             R.id.vider ->{
                 create(this,"panier.json", "null")
+                Toast.makeText(this, "Pannier vidé", Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.isen.irestaurant.R
 
 
-class BleAdapter(private val bleliste: ArrayList<ScanResult>) : RecyclerView.Adapter<BleAdapter.ViewHolder>() {
+class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener : (String) -> (Unit)) : RecyclerView.Adapter<BleAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textNom : TextView = itemView.findViewById(R.id.nomTextView)
         val textAddresse : TextView = itemView.findViewById(R.id.addresseTextView)
@@ -34,6 +34,9 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>) : RecyclerView.Ada
         holder.rssi.setBackgroundTintList(
             ColorStateList.valueOf(Color
             .parseColor(pickColor(item.rssi))));
+        holder.itemView.setOnClickListener{
+            clickListener(item.device.address)
+        }
 
     }
 

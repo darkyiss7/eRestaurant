@@ -118,6 +118,7 @@ class DetailActivity : AppCompatActivity() {
             }
             R.id.vider ->{
                 create(this,"panier.json", "null")
+                Toast.makeText(this, "Pannier vidé", Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
