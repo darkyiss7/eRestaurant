@@ -1,6 +1,7 @@
 package com.isen.irestaurant.adapter
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.le.ScanResult
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
@@ -16,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.isen.irestaurant.R
 
 
-class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener : (String) -> (Unit)) : RecyclerView.Adapter<BleAdapter.ViewHolder>() {
+class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener : (BluetoothDevice) -> (Unit)) : RecyclerView.Adapter<BleAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textNom : TextView = itemView.findViewById(R.id.nomTextView)
         val textAddresse : TextView = itemView.findViewById(R.id.addresseTextView)
@@ -35,7 +36,7 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener :
             ColorStateList.valueOf(Color
             .parseColor(pickColor(item.rssi))));
         holder.itemView.setOnClickListener{
-            clickListener(item.device.address)
+            clickListener(item.device)
         }
 
     }

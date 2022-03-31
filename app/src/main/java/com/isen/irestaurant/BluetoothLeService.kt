@@ -53,7 +53,6 @@ class BluetoothLeService : Service() {
 
     @SuppressLint("MissingPermission")
     fun connect(address: String):Boolean {
-        var bool : Boolean = true
         bluetoothAdapter?.let { adapter ->
             try {
                 val device = adapter.getRemoteDevice(address)
@@ -61,18 +60,33 @@ class BluetoothLeService : Service() {
                 return true
             } catch (exception: IllegalArgumentException) {
                 Log.w(TAG, "Device not found with provided address.")
-                bool = false
+                return false
             }
             // connect to the GATT server on the device
         } ?: run {
             Log.w(TAG, "BluetoothAdapter not initialized")
-            bool = false
+            return false
         }
-        return bool
     }
     inner class LocalBinder : Binder() {
         fun getService() : BluetoothLeService {
             return this@BluetoothLeService
+        }
+    }
+    override fun onUnbind(intent: Intent?): Boolean {
+        close()
+        return super.onUnbind(intent)
+    }
+
+    private fun close() {
+        bluetoothGatt?.let { gatt ->
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                ) != PackageManager.PERMISSION_GRANTED
+            )
+            gatt.close()
+            bluetoothGatt = null
         }
     }
     companion object {
@@ -83,6 +97,5 @@ class BluetoothLeService : Service() {
 
         private const val STATE_DISCONNECTED = 0
         private const val STATE_CONNECTED = 2
-
     }
 }

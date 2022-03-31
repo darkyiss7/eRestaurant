@@ -14,6 +14,8 @@
     <string name="detail_modifier">Modifier : %1$s €</string>
     <string name="detail_supprimer">Supprimer</string>
     <string name="detail_total">Total : %1$s €</string>
+    <string name="connected">Connecté a l\'appareil</string>
+    <string name="disconnected">Appareil déconnecté</string>
     <string-array name="categoryList">
         <item>entree</item>
         <item>plat</item>
