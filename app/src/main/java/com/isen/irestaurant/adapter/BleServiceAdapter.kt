@@ -1,6 +1,7 @@
 package com.isen.irestaurant.adapter
 
 import android.bluetooth.BluetoothGattCharacteristic
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +53,30 @@ class BleServiceAdapter(private val serviceList: MutableList<BLEService>) :
         childIndex: Int
     ) {
         val characteristics = group.items[childIndex] as BluetoothGattCharacteristic
-        holder.characteristicName.text = characteristics.uuid.toString()
+        holder.characteristicName.text = characteristics.service.toString()
+        holder.characteristicUUID.text = characteristics.uuid.toString()
+        Log.d("Propriete", characteristics.properties.toString())
+        holder.characteristicPropriete.text = translateProperty(characteristics.properties)
+        holder.characteristicValeur.text=characteristics.value?.toString()
+    }
+    private fun translateProperty(int: Int):String{
+        var propriete = "null"
+        when{
+
+            int== 1-> propriete = "Broadcast"
+            int== 64 -> propriete="AuthenticatedSignedWrites"
+            int== 128 -> propriete = "ExtendedProperties"
+            int== 32 -> propriete = "Indicate"
+            int== 0 -> propriete = "Aucune"
+            int== 2 -> propriete = "Lecture"
+            int== 256 -> propriete = "ReliableWrites"
+            int== 512 -> propriete = "WritableAuxiliaries"
+            int== 8 -> propriete = "Ecriture"
+            int== 4 -> propriete = "WriteWithoutResponse"
+            int== 10 -> propriete = "Notification"
+            else -> propriete = "Propriete inconnue : "+int.toString()
+        }
+        return propriete
     }
 
     override fun onBindGroupViewHolder(
@@ -60,6 +84,7 @@ class BleServiceAdapter(private val serviceList: MutableList<BLEService>) :
         flatPosition: Int,
         group: ExpandableGroup<*>
     ) {
-        holder.serviceName.text = group.title
+        holder.serviceUUID.text = group.title
+        holder.serviceName.text= "Attribut specifique"
     }
 }

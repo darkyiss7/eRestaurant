@@ -41,7 +41,7 @@ class BLEDeviceActivity : AppCompatActivity() {
 
 
     private fun connectToDevice(device: BluetoothDevice?) {
-        bluetoothGatt = device?.connectGatt(this, true, object : BluetoothGattCallback() {
+        bluetoothGatt = device?.connectGatt(this, false, object : BluetoothGattCallback() {
             override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
                 super.onConnectionStateChange(gatt, status, newState)
                 onConnectionStateChange(gatt, newState)

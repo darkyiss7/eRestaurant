@@ -30,7 +30,11 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener :
     @SuppressLint("MissingPermission")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = bleliste[position]
-        holder.textNom.text = item.device.name
+        if (item.device.name!=null){
+            holder.textNom.text = item.device.name
+        }else{
+            holder.textNom.text = "Nom inconnu"
+        }
         holder.textAddresse.text = item.device.address
         holder.rssi.setImageBitmap(textAsBitmap(item.rssi.toString(),50f, Color.WHITE))
         holder.rssi.setBackgroundTintList(
