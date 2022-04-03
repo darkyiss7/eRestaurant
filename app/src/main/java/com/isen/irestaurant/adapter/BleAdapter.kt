@@ -26,7 +26,8 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener :
     }
 
 
-    @SuppressLint("SetTextI18n")
+
+    @SuppressLint("MissingPermission")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = bleliste[position]
         holder.textNom.text = item.device.name
@@ -60,6 +61,7 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener :
             bleliste.add(res)
         }else{
             bleliste[index]=res
+            notifyItemInserted(bleliste.size - 1)
         }
         bleliste.sortBy { kotlin.math.abs(it.rssi) }
     }

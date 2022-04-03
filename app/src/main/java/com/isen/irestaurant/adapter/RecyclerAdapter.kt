@@ -15,7 +15,6 @@ class RecyclerAdapter(private val platListe: java.util.ArrayList<Item>, val clic
         val textView : TextView = itemView.findViewById(R.id.text)
         val image : ImageView = itemView.findViewById(R.id.imagePreview)
         val prix : TextView = itemView.findViewById(R.id.description)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +26,6 @@ class RecyclerAdapter(private val platListe: java.util.ArrayList<Item>, val clic
         val item = platListe[position]
         holder.textView.text = item.name_fr
         holder.prix.text = "Prix : "+item.prices[0].price.toFloat() + "€"
-      //  holder.ingredients.text = item.ingredients[0].name_fr
         Picasso.get().load(item.images[0].ifEmpty { null })
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.image)

@@ -85,7 +85,7 @@ class BLEScanActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
-        )==PackageManager.PERMISSION_GRANTED
+            )==PackageManager.PERMISSION_GRANTED
         ){
             startLeScanBLE(enable)
         }else{
@@ -132,7 +132,7 @@ class BLEScanActivity : AppCompatActivity() {
         binding.bleScanProgression.isVisible = false
     }
     private fun askBluetoothPermission(){
-            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+        val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
         if (ActivityCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.BLUETOOTH_CONNECT
@@ -142,8 +142,9 @@ class BLEScanActivity : AppCompatActivity() {
         }
     }
     private val scanCallback = object : ScanCallback() {
+        @SuppressLint("MissingPermission")
         override fun onScanResult(callbackType: Int, result: ScanResult) {
-            Log.d("BLEScanActivity","result : ${result.device.address}, rssi : ${result.rssi}")
+            Log.d("BLEScanActivity","result : ${result.device.address}, rssi : ${result.rssi},nom : ${result.device.name}")
             (binding.bleScanList.adapter as BleAdapter).apply {
                 addToList(result)
                 notifyDataSetChanged()
@@ -151,17 +152,18 @@ class BLEScanActivity : AppCompatActivity() {
         }
     }
     private fun handlePlayPause(){
-            if (isScanning){
-                binding.bleScanImg.setImageResource(R.drawable.ic_baseline_pause_24)
-                binding.bleScanText.text=getString(R.string.ble_scan_pause)
-                binding.bleScanProgression.isIndeterminate = true
-            }else{
-                binding.bleScanImg.setImageResource(R.drawable.ic_baseline_play_arrow_24)
-                binding.bleScanText.text=getString(R.string.ble_scan_play)
-                binding.bleScanProgression.isIndeterminate = false
-            }
+        if (isScanning){
+            binding.bleScanImg.setImageResource(R.drawable.ic_baseline_pause_24)
+            binding.bleScanText.text=getString(R.string.ble_scan_pause)
+            binding.bleScanProgression.isIndeterminate = true
+        }else{
+            binding.bleScanImg.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+            binding.bleScanText.text=getString(R.string.ble_scan_play)
+            binding.bleScanProgression.isIndeterminate = false
+        }
     }
     companion object {
+        val DEVICE_KEY ="device_key"
         val ITEM_KEY ="item_key"
         private const val ALL_PERMISSION_REQUEST_CODE = 1
         private const val ENABLE_BLUETOOTH_REQUEST_CODE = 1

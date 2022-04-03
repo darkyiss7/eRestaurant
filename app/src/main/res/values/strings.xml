@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iRestaurant</string>
+    <string name="app_name">Theo\'s eRestaurant</string>
     <string name="entree_name">Entrées</string>
     <string name="plats_name">Plats</string>
     <string name="desserts_name">Desserts</string>
@@ -14,8 +14,9 @@
     <string name="detail_modifier">Modifier : %1$s €</string>
     <string name="detail_supprimer">Supprimer</string>
     <string name="detail_total">Total : %1$s €</string>
-    <string name="connected">Connecté a l\'appareil</string>
-    <string name="disconnected">Appareil déconnecté</string>
+    <string name="connected">Status : Connecté</string>
+    <string name="disconnected">Status : Déconnecté</string>
+    <string name="connexion">Status : Connexion en cours...</string>
     <string-array name="categoryList">
         <item>entree</item>
         <item>plat</item>
@@ -23,4 +24,7 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ecrire">Ecrire</string>
+    <string name="lecture">Lecture</string>
+    <string name="notifier">Notifier</string>
 </resources>

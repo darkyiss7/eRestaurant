@@ -3,14 +3,13 @@ package com.isen.irestaurant
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Service
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothGatt
-import android.bluetooth.BluetoothGattCallback
-import android.bluetooth.BluetoothProfile
+import android.bluetooth.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Binder
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import androidx.core.app.ActivityCompat
 
@@ -34,9 +33,14 @@ class BluetoothLeService : Service() {
         return true
     }
     private val bluetoothGattCallback: BluetoothGattCallback = object : BluetoothGattCallback() {
+        @SuppressLint("MissingPermission")
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 // successfully connected to the GATT Server
+                bluetoothGatt = gatt
+                Handler(Looper.getMainLooper()).post {
+                    bluetoothGatt?.discoverServices()
+                }
                 connectionState = STATE_CONNECTED
                 broadcastUpdate(ACTION_GATT_CONNECTED)
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
@@ -45,7 +49,41 @@ class BluetoothLeService : Service() {
                 broadcastUpdate(ACTION_GATT_DISCONNECTED)
             }
         }
+
+        override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
+            gatt?.services?.map{
+
+            }
+            with(gatt) {
+                Log.w("BluetoothGattCallback", "Discovered ${services.size} services for ${device.address}")
+                printGattTable() // See implementation just above this section
+                // Consider connection setup as complete here
+            }
+        }
+
+        override fun onCharacteristicRead(
+            gatt: BluetoothGatt?,
+            characteristic: BluetoothGattCharacteristic?,
+            status: Int
+        ) {
+            super.onCharacteristicRead(gatt, characteristic, status)
+        }
     }
+    private fun BluetoothGatt.printGattTable() {
+        if (services.isEmpty()) {
+            Log.i("printGattTable", "No service and characteristic available, call discoverServices() first?")
+            return
+        }
+        services.forEach { service ->
+            val characteristicsTable = service.characteristics.joinToString(
+                separator = "\n|--",
+                prefix = "|--"
+            ) { it.uuid.toString() }
+            Log.i("printGattTable", "\nService ${service.uuid}\nCharacteristics:\n$characteristicsTable"
+            )
+        }
+    }
+
     private fun broadcastUpdate(action: String) {
         val intent = Intent(action)
         sendBroadcast(intent)
