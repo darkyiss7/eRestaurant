@@ -22,7 +22,7 @@ import com.isen.irestaurant.objects.BLEConnexionState
 
 @SuppressLint("MissingPermission")
 class BLEDeviceActivity : AppCompatActivity() {
-
+    private var isScanning = false
     private lateinit var binding: ActivityBledeviceBinding
     private var bluetoothGatt : BluetoothGatt? = null
 
@@ -43,6 +43,7 @@ class BLEDeviceActivity : AppCompatActivity() {
     private fun connectToDevice(device: BluetoothDevice?) {
         bluetoothGatt = device?.connectGatt(this, false, object : BluetoothGattCallback() {
             override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
+
                 super.onConnectionStateChange(gatt, status, newState)
                 onConnectionStateChange(gatt, newState)
             }
@@ -52,8 +53,10 @@ class BLEDeviceActivity : AppCompatActivity() {
                 val bleService= gatt?.services?.map { BLEService(it.uuid.toString(), it.characteristics) } ?: arrayListOf()
                 val adapter= BleServiceAdapter(bleService as MutableList<BLEService>)
                 runOnUiThread {
+                    isScanning = false
                     binding.characteristicView.layoutManager = LinearLayoutManager(this@BLEDeviceActivity)
                     binding.characteristicView.adapter = adapter
+                    handlePlayPause()
                 }
             }
 
@@ -65,7 +68,9 @@ class BLEDeviceActivity : AppCompatActivity() {
                 super.onCharacteristicRead(gatt, characteristic, status)
             }
         })
+        isScanning = true
         bluetoothGatt?.connect()
+
     }
 
     private fun onConnectionStateChange (gatt: BluetoothGatt?, newState: Int){
@@ -77,7 +82,10 @@ class BLEDeviceActivity : AppCompatActivity() {
         }
         runOnUiThread {
             binding.statusTextView.text = state
+
+
         }
+        handlePlayPause()
     }
 
     override fun onStop() {
@@ -88,5 +96,12 @@ class BLEDeviceActivity : AppCompatActivity() {
     private fun closeBluetoothGatt() {
         bluetoothGatt?.close()
         bluetoothGatt = null
+    }
+    private fun handlePlayPause(){
+        if (isScanning){
+            binding.progressBar2.isIndeterminate = true
+        }else{
+            binding.progressBar2.isIndeterminate = false
+        }
     }
 }
