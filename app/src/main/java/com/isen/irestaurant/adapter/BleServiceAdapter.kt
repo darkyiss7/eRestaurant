@@ -22,6 +22,7 @@ class BleServiceAdapter(private val serviceList: MutableList<BLEService>) :
         var serviceName : TextView = itemView.findViewById(R.id.characteristicName)
         var serviceUUID : TextView = itemView.findViewById(R.id.characteristicUUID)
         var serviceArrows : ImageView = itemView.findViewById(R.id.serviceArrow)
+
     }
 
     class CharacteristicViewHolder(itemView: View): ChildViewHolder(itemView) {
@@ -29,6 +30,7 @@ class BleServiceAdapter(private val serviceList: MutableList<BLEService>) :
         var characteristicUUID : TextView = itemView.findViewById(R.id.characteristicUUID)
         var characteristicValeur : TextView = itemView.findViewById(R.id.characteristicValeur)
         var characteristicPropriete : TextView = itemView.findViewById(R.id.characteristicPropriete)
+        var ecrire : TextView = itemView.findViewById(R.id.boutonEcrire)
     }
 
     override fun onCreateGroupViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder =
