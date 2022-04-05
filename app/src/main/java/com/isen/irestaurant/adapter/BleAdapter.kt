@@ -36,7 +36,7 @@ class BleAdapter(private val bleliste: ArrayList<ScanResult>,val clickListener :
             holder.textNom.text = "Nom inconnu"
         }
         holder.textAddresse.text = item.device.address
-        holder.rssi.setImageBitmap(textAsBitmap(item.rssi.toString(),50f, Color.WHITE))
+        holder.rssi.setImageBitmap(textAsBitmap(item.rssi.toString(),20f, Color.WHITE))
         holder.rssi.setBackgroundTintList(
             ColorStateList.valueOf(Color
             .parseColor(pickColor(item.rssi))));

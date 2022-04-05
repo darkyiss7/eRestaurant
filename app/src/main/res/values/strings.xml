@@ -14,6 +14,8 @@
     <string name="detail_modifier">Modifier : %1$s €</string>
     <string name="detail_supprimer">Supprimer</string>
     <string name="detail_total">Total : %1$s €</string>
+    <string name="ble_uuid">UUID : %1$s €</string>
+    <string name="ble_proprietes">Propriétés : %1$s €</string>
     <string name="connected">Status : Connecté</string>
     <string name="disconnected">Status : Déconnecté</string>
     <string name="connexion">Status : Connexion en cours...</string>
@@ -27,4 +29,8 @@
     <string name="ecrire">Ecrire</string>
     <string name="lecture">Lecture</string>
     <string name="notifier">Notifier</string>
+    <string name="ble_device_write_characteristic_title">Ecrire la valeur</string>
+    <string name="ble_device_write_characteristic_confirm">Valider</string>
+    <string name="ble_device_write_characteristic_cancel">Annuler</string>
+    <string name="ble_scan_default_name">Appareil inconnu</string>
 </resources>

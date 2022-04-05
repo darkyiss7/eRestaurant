@@ -319,7 +319,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/keyboard_arrow_down/baseline_keyboard_arrow_down_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/pause/baseline_pause_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -329,9 +329,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="03a9f4" />
-                            <entry key="outputName" value="ic_baseline_keyboard_arrow_down_24" />
-                            <entry key="sourceFile" value="D:\Documents\Téléchargements\ic_shopping_cart.svg" />
+                            <entry key="color" value="03a8f3" />
+                            <entry key="outputName" value="ic_baseline_pause_24" />
+                            <entry key="sourceFile" value="C:\Users\theod\Desktop\Sans titre-1.psd" />
                           </map>
                         </option>
                       </PersistentState>
