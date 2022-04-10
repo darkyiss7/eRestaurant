@@ -5,6 +5,7 @@ Ce projet a pour but d'apprendre a maitriser les applications android.
 ## Installation
 
 Telecharger le fichier `app-release.apk` et le lancer sur un smartphone.
+https://github.com/darkyiss7/eRestaurant/blob/master/app/release/app-release.apk
 ## Fonctionnalités
 
 Bluetooth,
