@@ -1,5 +1,6 @@
 package com.isen.irestaurant.activities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -38,7 +39,7 @@ class CartDetailActivity : AppCompatActivity() {
         binding.totalView2.text=getString(R.string.detail_modifier,(item.plat.prices[0].price.toFloat()*count).toString())
         binding.prixView2.text = getString(R.string.detail_prix,item.plat.prices[0].price)
         binding.ingredientsView2.text = getString(R.string.detail_ingredients,item.plat.ingredients.joinToString { it.name_fr })
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         actionBar!!.title = item.plat.name_fr
         actionBar.setIcon(R.drawable.ic_shopping_cart_24)
         actionBar.setDisplayHomeAsUpEnabled(true)
@@ -49,22 +50,22 @@ class CartDetailActivity : AppCompatActivity() {
             delete(it.context)
         }
     }
-    fun delete(context: Context){
+    private fun delete(context: Context){
         val intent = Intent(this, CartActivity::class.java)
         val cartitem = CartItem(item.plat,item.quantité)
         val itemsPresent = Gson().fromJson(getStringFromFile(), CartData::class.java)
         itemsPresent.data.remove(cartitem)
         val gson = Gson()
         if (itemsPresent.data.isEmpty()){
-            create(context,"panier.json","null")
+            create(context,"null")
         }else{
             val jsonString2 = gson.toJson(itemsPresent)
-            create(context,"panier.json",jsonString2)
+            create(context,jsonString2)
         }
         startActivity(intent)
         Toast.makeText(context, cartitem.plat.name_fr+" supprimé", Toast.LENGTH_SHORT).show()
     }
-    fun getStringFromFile():String{
+    private fun getStringFromFile():String{
         var jsonString: String
         jsonString = ""
         try {
@@ -72,7 +73,6 @@ class CartDetailActivity : AppCompatActivity() {
             val fos: FileInputStream = openFileInput("panier.json")
             val size: Int = fos.available()
             val buffer = ByteArray(size)
-            val gson = Gson()
             fos.read(buffer)
             fos.close()
             jsonString = String(buffer, charset("UTF-8"))
@@ -81,7 +81,7 @@ class CartDetailActivity : AppCompatActivity() {
         }
         return jsonString
     }
-    fun modifyCart(context: Context) {
+    private fun modifyCart(context: Context) {
         val intent = Intent(this, CartActivity::class.java)
         val cartitem = CartItem(item.plat,count)
             val itemsPresent = Gson().fromJson(getStringFromFile(), CartData::class.java)
@@ -90,18 +90,20 @@ class CartDetailActivity : AppCompatActivity() {
                     itemsPresent.data[i].quantité=count
                     val gson = Gson()
                     val jsonString2 = gson.toJson(itemsPresent)
-                    create(context,"panier.json",jsonString2)
+                    create(context,jsonString2)
                 }
             }
         startActivity(intent)
         Toast.makeText(context, cartitem.plat.name_fr+" modifié", Toast.LENGTH_SHORT).show()
     }
+    @SuppressLint("SetTextI18n")
     fun decrement(view : View){
         count++
         binding.compteurView2.text=(""+count)
         binding.totalView2.text=getString(R.string.detail_modifier,(item.plat.prices[0].price.toFloat()*count).toString())
 
     }
+    @SuppressLint("SetTextI18n")
     fun increment(view : View){
         if (count<=1) count =1
         else count--
@@ -124,16 +126,15 @@ class CartDetailActivity : AppCompatActivity() {
                 return true
             }
             R.id.vider ->{
-                create(this,"panier.json", "null")
+                create(this, "null")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-    private fun create(context: Context, fileName: String, jsonString: String?): Boolean {
-        val FILENAME = "panier.json"
+    private fun create(context: Context, jsonString: String?): Boolean {
         return try {
-            val fos: FileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE)
+            val fos: FileOutputStream = context.openFileOutput("panier.json", Context.MODE_PRIVATE)
             if (jsonString != null) {
                 fos.write(jsonString.toByteArray())
             }
@@ -144,10 +145,5 @@ class CartDetailActivity : AppCompatActivity() {
         } catch (ioException: IOException) {
             false
         }
-    }
-    fun isFilePresent(context: Context, fileName: String): Boolean {
-        val path: String = context.getFilesDir().getAbsolutePath().toString() + "/" + fileName
-        val file = File(path)
-        return file.exists()
     }
 }

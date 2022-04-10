@@ -83,7 +83,6 @@ class BleServiceAdapter(
         val titre = BLEUUIDAttributes.getBLEAttributeFromUUID(characteristics.uuid.toString()).title
         holder.characteristicName.text = titre
         holder.characteristicUUID.text = uuid
-        Log.d("Propriete", characteristics.properties.toString())
         val properties = arrayListOf<String>()
 
         addPropertyFromCharacteristic(
@@ -119,25 +118,7 @@ class BleServiceAdapter(
             holder.characteristicValeur.text = value
         }
     }
-    private fun translateProperty(int: Int):String{
-        var propriete = "null"
-        when{
 
-            int== 1-> propriete = "Broadcast"
-            int== 64 -> propriete="AuthenticatedSignedWrites"
-            int== 128 -> propriete = "ExtendedProperties"
-            int== 32 -> propriete = "Indiquer"
-            int== 0 -> propriete = "Aucune"
-            int== 2 -> propriete = "Lecture"
-            int== 256 -> propriete = "ReliableWrites"
-            int== 512 -> propriete = "WritableAuxiliaries"
-            int== 8 -> propriete = "Ecriture"
-            int== 4 -> propriete = "WriteWithoutResponse"
-            int== 10 -> propriete = "Notification"
-            else -> propriete = "Propriete inconnue : "+int.toString()
-        }
-        return propriete
-    }
     private fun addPropertyFromCharacteristic(
         characteristic: BluetoothGattCharacteristic,
         properties: ArrayList<String>,

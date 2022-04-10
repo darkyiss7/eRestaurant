@@ -33,6 +33,7 @@ class BLEDeviceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBledeviceBinding
     private var bluetoothGatt : BluetoothGatt? = null
     private var timer: Timer? = null
+    private lateinit var adapter: BleServiceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +69,10 @@ class BLEDeviceActivity : AppCompatActivity() {
                 status: Int
             ) {
                 super.onCharacteristicRead(gatt, characteristic, status)
+                runOnUiThread {
+                    adapter.updateFromChangedCharacteristic(characteristic)
+                    adapter.notifyDataSetChanged()
+                }
             }
         })
         isScanning = true
@@ -76,7 +81,7 @@ class BLEDeviceActivity : AppCompatActivity() {
     }
     private fun onServicesDiscovered(gatt: BluetoothGatt?) {
         val bleService= gatt?.services?.map { BLEService(it.uuid.toString(), it.characteristics) } ?: arrayListOf()
-        val adapter= BleServiceAdapter(this,bleService as MutableList<BLEService>,{ characteristic ->
+         adapter= BleServiceAdapter(this,bleService as MutableList<BLEService>,{ characteristic ->
             if (gatt != null) {
                 gatt.readCharacteristic(characteristic)
             }
