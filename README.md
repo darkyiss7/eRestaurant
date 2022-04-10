@@ -25,4 +25,4 @@ Createur darkyiss7@gmail.com .
     
 ## Remerciements
 
-Un grand merci a M. Marc MOLLINARI pour ses cours et son aide tout au long du projet.
+Un grand merci a @mmolinari pour ses cours et son aide tout au long du projet.
