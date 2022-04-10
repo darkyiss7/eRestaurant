@@ -8,15 +8,18 @@ Telecharger le fichier `app-release.apk` et le lancer sur un smartphone android.
 https://github.com/darkyiss7/eRestaurant/blob/master/app/release/app-release.apk
 ## Fonctionnalités
 
-Bluetooth,
-Lire characteristiques,
-Ecrire characteristiques
-Pannier,
-Ajouter au panier,
-Modifier panier,
-Supprimer du pannier,
-Vider le pannier,
-SwipeToRefresh,
+* Bluetooth
+    * Scanner Appareils
+    * Se Connecter
+    * Se deconnecter
+    * Lire characteristiques
+    * Ecrire characteristiques
+* Pannier
+    * Ajouter au panier
+    * Modifier panier
+    * Supprimer du pannier
+    * Vider le pannier
+* SwipeToRefresh
 
 
 ## Support
