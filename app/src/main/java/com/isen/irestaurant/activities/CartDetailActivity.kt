@@ -51,7 +51,7 @@ class CartDetailActivity : AppCompatActivity() {
     }
     fun delete(context: Context){
         val intent = Intent(this, CartActivity::class.java)
-        val cartitem = CartItem(item.plat,count)
+        val cartitem = CartItem(item.plat,item.quantité)
         val itemsPresent = Gson().fromJson(getStringFromFile(), CartData::class.java)
         itemsPresent.data.remove(cartitem)
         val gson = Gson()

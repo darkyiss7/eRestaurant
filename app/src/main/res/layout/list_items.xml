@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="18dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -28,26 +30,30 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/imagePreview"
             android:layout_toRightOf="@id/imagePreview"
             android:text="Titre"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textColor="@color/dark_grey"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/imagePreview"
+            app:layout_constraintTop_toTopOf="@+id/imagePreview" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imagePreview"
             android:layout_below="@id/text"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/imagePreview"
             android:layout_toRightOf="@id/imagePreview"
             android:text="Prix"
-            android:textSize="20sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/teal_200"/>
-    </RelativeLayout>
+            android:textColor="@color/teal_200"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
+            app:layout_constraintStart_toEndOf="@+id/imagePreview"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
